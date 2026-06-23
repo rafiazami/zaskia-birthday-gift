@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Elegant Girl! ❤️</title>
+    <style>
+        /* --- RESET & GLOBAL STYLE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f4efe6;
+        }
+
+        /* --- BACKGROUND MANAGEMENT --- */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7) contrast(0.95);
+            transition: background 0.8s ease-in-out;
+            z-index: 1;
+        }
+
+        /* --- PAGES SYSTEM --- */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease-in-out;
+            z-index: 2;
+        }
+
+        .page.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* --- UI CARD (Doodle Style) --- */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 3.5px dashed #6e8e76; /* Efek garis krayon/putus-putus */
+            border-radius: 24px;
+            padding: 25px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        h1 { color: #4a3b32; margin-bottom: 12px; font-size: 1.6rem; }
+        p { color: #5a4b41; margin-bottom: 20px; font-size: 0.95rem; line-height: 1.5; }
+
+        /* --- BUTTONS --- */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            height: 50px;
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border: 2px solid #4a3b32;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary { background-color: #6e8e76; color: white; }
+        .btn-secondary { background-color: #d98880; color: white; position: absolute; }
+        .btn-next { margin-top: 15px; background-color: #4a3b32; color: white; width: 100%; }
+
+        /* --- INTERACTIVE: PAGE 2 (RECIPE) --- */
+        .flavor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .flavor-item { background: #fcf8f2; border: 2px solid #bda38f; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; }
+        .flavor-item:active { transform: scale(0.95); }
+        .blender { font-size: 3rem; margin: 15px 0; transition: transform 0.3s ease; }
+        .shake { animation: shakeAnim 0.5s infinite; }
+        @keyframes shakeAnim { 0% {transform: translate(2px, 1px) rotate(0deg);} 10% {transform: translate(-1px, -2px) rotate(-1deg);} 20% {transform: translate(-3px, 0px) rotate(1deg);} 30% {transform: translate(0px, 2px) rotate(0deg);} 40% {transform: translate(1px, -1px) rotate(1deg);} 50% {transform: translate(-1px, 2px) rotate(-1deg);} 60% {transform: translate(-3px, 1px) rotate(0deg);} 70% {transform: translate(2px, 1px) rotate(-1deg);} 80% {transform: translate(-1px, -1px) rotate(1deg);} 90% {transform: translate(2px, 2px) rotate(0deg);} 100% {transform: translate(1px, -2px) rotate(-1deg);} }
+
+        /* --- INTERACTIVE: PAGE 4 & 5 (GALLERY) --- */
+        .grid-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
+        .thumb-img { width: 100%; height: 100px; object-fit: cover; border-radius: 10px; border: 2px solid #4a3b32; cursor: pointer; }
+        .preview-box { display: none; width: 100%; max-height: 200px; object-fit: contain; margin-top: 10px; border-radius: 12px; border: 2px dashed #6e8e76; }
+
+        /* --- INTERACTIVE: PAGE 7 (LETTER) --- */
+        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 0.95rem; white-space: pre-line; color: #4a3b32; }
+
+        /* --- VIDEO OPTIMIZATION --- */
+        video { width: 100%; border-radius: 15px; border: 2px solid #4a3b32; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <audio id="backsound" loop>
+        <source src="musik-pilihan.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="bgLayer" class="bg-layer" style="background-image: url('foto-editan-1.jpg');"></div>
+
+    <div class="page active" id="page1">
+        <div class="card">
+            <h1>Konfirmasi Dulu! 👑</h1>
+            <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah cowok kamu ini adalah pria paling tampan dan tiada duanya di dunia?</p>
+            <div class="btn-container" id="escapeContainer">
+                <button class="btn btn-primary" onclick="startWebsite()">Iya, Setuju Banget! ❤️</button>
+                <button class="btn btn-secondary" id="btnNo">Nggak Sempet Lah</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page2">
+        <div class="card">
+            <h1>The Recipe of You 🍫</h1>
+            <p>Racik menu kesukaanmu! Ketuk (*tap*) 3 bahan di bawah ini untuk dimasukkan ke dalam blender rahasia:</p>
+            <div class="flavor-grid">
+                <div class="flavor-item" onclick="addIngredient('Chocolate 🍫')">Chocolate</div>
+                <div class="flavor-item" onclick="addIngredient('Matcha 🍵')">Matcha</div>
+                <div class="flavor-item" onclick="addIngredient('Blueberry 🍇')">Blueberry</div>
+                <div class="flavor-item" onclick="addIngredient('Almond 🌰')">Almond</div>
+                <div class="flavor-item" onclick="addIngredient('Vanilla 🍦')">Vanilla</div>
+                <div class="flavor-item" onclick="addIngredient('Kucing Lucu 🐱')">Cat Love</div>
+            </div>
+            <div id="blenderMachine" class="blender">🏺</div>
+            <p id="mixStatus" style="font-weight: bold; color: #6e8e76; margin-bottom: 5px;"></p>
+            <button id="btnPage2" class="btn btn-next" onclick="nextPage(3, 'foto-editan-3.jpg')" disabled style="opacity: 0.5;">Campur & Lihat Hasil ➡️</button>
+        </div>
+    </div>
+
+    <div class="page" id="page3">
+        <div class="card">
+            <h1>For My Ocean Girl 🌊</h1>
+            <p>Berhasil menyelamatkan Cry Baby! Ini video spesial yang dibuat khusus dengan seluruh tenaga kerja duniaku untukmu:</p>
+            <video id="mainVideo" controls playsinline>
+                <source src="video-editan.mp4" type="video/mp4">
+                Browser kamu tidak mendukung pemutar video ini.
+            </video>
+            <button class="btn btn-next" onclick="pauseVideoAndNext()">Buka Galeri Foto ➡️</button>
+        </div>
+    </div>
+
+    <div class="page" id="page4">
+        <div class="card">
+            <h1>Memory Lane: Part I 📸</h1>
+            <p>Ketuk gambar mini di bawah ini untuk memunculkan dan memperbesar foto kenangan kita tanpa tertumpuk:</p>
+            <div class="grid-gallery">
+                <img src="foto-editan-4a.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4a.jpg')">
+                <img src="foto-editan-4b.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4b.jpg')">
+                <img src="foto-editan-4c.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4c.jpg')">
+                <img src="foto-editan-4d.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4d.jpg')">
+            </div>
+            <img id="imgPreview1" class="preview-box">
+            <button class="btn btn-next" onclick="nextPage(5, 'foto-editan-5.jpg')">Lihat Lembar Ke-2 ➡️</button>
+        </div>
+    </div>
+
+    <div class="page" id="page5">
+        <div class="card">
+            <h1>Memory Lane: Part II 🎞️</h1>
+            <p>Setiap ketukan membawa cerita berbeda. Silakan ketuk koleksi foto estetik di bawah ini:</p>
+            <div class="grid-gallery">
+                <img src="foto-editan-5a.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5a.jpg')">
+                <img src="foto-editan-5b.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5b.jpg')">
+                <img src="foto-editan-5c.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5c.jpg')">
+                <img src="foto-editan-5d.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5d.jpg')">
+            </div>
+            <img id="imgPreview2" class="preview-box">
+            <button class="btn btn-next" onclick="nextPage(6, 'foto-editan-6.jpg')">Satu Lembar Lagi ➡️</button>
+        </div>
+    </div>
+
+    <div class="page" id="page6">
+        <div class="card">
+            <h1>The Fun Snippets 元気 🧩</h1>
+            <p>Sisi kedewasaanmu berpadu sempurna dengan humor recehmu. Ini kompilasi foto favoritku:</p>
+            <div class="grid-gallery">
+                <img src="foto-editan-6a.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpg')">
+                <img src="foto-editan-6b.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6b.jpg')">
+            </div>
+            <img id="imgPreview3" class="preview-box">
+            <button class="btn btn-next" onclick="setupTypewriterPage()">Halaman Terakhir... ➡️</button>
+        </div>
+    </div>
+
+    <div class="page" id="page7">
+        <div class="card" style="max-width: 480px;">
+            <h1>To My Favorite Person 💌</h1>
+            <div class="letter-box" id="typewriterBox"></div>
+        </div>
+    </div>
+
+    <script>
+        const bgLayer = document.getElementById('bgLayer');
+        const audio = document.getElementById('backsound');
+        const btnNo = document.getElementById('btnNo');
+        const mainVideo = document.getElementById('mainVideo');
+
+        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR ---
+        function moveButton(e) {
+            if(e.type === 'touchstart') e.preventDefault();
+            const container = document.getElementById('escapeContainer');
+            const maxX = container.clientWidth - btnNo.clientWidth;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * 260) - 130;
+
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        }
+        btnNo.addEventListener('mousemove', moveButton);
+        btnNo.addEventListener('touchstart', moveButton);
+
+        function startWebsite() {
+            audio.play().catch(err => console.log("Audio play blocked: ", err));
+            nextPage(2, 'foto-editan-2.jpg');
+        }
+
+        // --- 2. GAMEPLAY: BLENDER COMPONENT (PAGE 2) ---
+        let ingredients = [];
+        function addIngredient(name) {
+            if(ingredients.length < 3 && !ingredients.includes(name)) {
+                ingredients.push(name);
+                document.getElementById('mixStatus').innerText = "Bahan dimasukkan: " + ingredients.join(', ');
+                
+                if(ingredients.length === 3) {
+                    const blender = document.getElementById('blenderMachine');
+                    blender.classList.add('shake');
+                    setTimeout(() => {
+                        blender.classList.remove('shake');
+                        blender.innerText = "🍹✨";
+                        document.getElementById('mixStatus').innerText = "Hore! Racikan Selesai! Klik tombol di bawah.";
+                        const nextBtn = document.getElementById('btnPage2');
+                        nextBtn.disabled = false;
+                        nextBtn.style.opacity = "1";
+                    }, 1500);
+                }
+            }
+        }
+
+        // --- 3. GAMEPLAY: PREVIEW FOTO (ANTI-TUMPUK) ---
+        function previewImage(boxId, src) {
+            const preview = document.getElementById(boxId);
+            preview.src = src;
+            preview.style.display = "block";
+        }
+
+        function pauseVideoAndNext() {
+            mainVideo.pause();
+            nextPage(4, 'foto-editan-4.jpg');
+        }
+
+        // --- 4. ENGINE: NAVIGASI HALAMAN ---
+        function nextPage(targetPageId, nextBgImage) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + targetPageId).classList.add('active');
+            if(nextBgImage) bgLayer.style.backgroundImage = `url('${nextBgImage}')`;
+        }
+
+        // --- 5. GAMEPLAY: TYPEWRITER (PAGE 7) ---
+        const longLetterText = `Selamat ulang tahun yang luar biasa untuk wanitaku yang paling elegan, mandiri, dan dewasa. \n\nTerima kasih sudah selalu menjadi partner terbaik, pendengar yang hebat, sekaligus pelipur lara dengan selera humor recehmu yang selalu sukses bikin hari-hariku jauh lebih cerah.\n\nAku berharap di umur barumu ini, hidupmu selalu semanis cokelat dan es krim matcha kesukaanmu, serta semua koleksi Popmart Cry Baby Ocean Series yang kamu incar bisa segera berjejer rapi di kamarmu.\n\nTertanda,\nCowok Tersayangmu yang Paling Tampan 😎❤️`;
+
+        function setupTypewriterPage() {
+            nextPage(7, 'foto-editan-7.jpg');
+            let i = 0;
+            const box = document.getElementById('typewriterBox');
+            box.innerHTML = ""; 
+            
+            function typeWriter() {
+                if (i < longLetterText.length) {
+                    box.innerHTML += longLetterText.charAt(i);
+                    i++;
+                    box.scrollTop = box.scrollHeight; // Auto scroll otomatis ke bawah saat teks mengetik di HP
+                    setTimeout(typeWriter, 45); // Kecepatan mengetik teks (milidetik)
+                }
+            }
+            setTimeout(typeWriter, 800);
+        }
+    </script>
+</body>
+</html>
