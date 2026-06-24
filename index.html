@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Elegant Girl! ❤️</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-
+    <title>Happy Birthday My Fav Girl! 🎂🐱</title>
     <style>
         /* --- RESET & GLOBAL STYLE --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Quicksand', sans-serif; /* Font isi bulat & modern ala kartun kekinian */
+            /* Full menggunakan Comic Sans untuk kesan kartun/doodle total */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; 
         }
 
         body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #f4efe6;
+            background-color: #fcf8f2;
         }
 
         /* --- FIXED BACKGROUND (Mengunci Tetap dari Awal-Akhir) --- */
@@ -35,7 +31,7 @@
             background-image: url('background-utama.jpg');
             background-size: cover;
             background-position: center;
-            filter: brightness(0.6) contrast(0.95); /* Sedikit digelapkan agar kartu krayon lebih kontras */
+            filter: brightness(0.65) contrast(0.9);
             z-index: 1;
         }
 
@@ -54,8 +50,8 @@
             text-align: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-            transform: scale(0.95);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transform: scale(0.93);
             z-index: 2;
         }
 
@@ -65,33 +61,30 @@
             transform: scale(1);
         }
 
-        /* --- UI CARD (Doodle & Crayon Dashed Style) --- */
+        /* --- UI CARD (Doodle Crayon & Buku Gambar Style) --- */
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 3.5px dashed #6e8e76; /* Efek garis putus-putus krayon */
-            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.95); /* Lebih pekat ala kertas gambar */
+            border: 4px dashed #5a4b41; /* Garis krayon cokelat dipertebal */
+            border-radius: 20px;
             padding: 25px;
-            max-width: 450px;
+            max-width: 440px;
             width: 100%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 8px 8px 0px rgba(74, 59, 50, 0.2); /* Shadow kaku khas komik/kartun */
         }
 
         h1 { 
-            font-family: 'Caveat', cursive; /* Font tulisan tangan krayon yang estetik */
             color: #4a3b32; 
-            margin-bottom: 10px; 
-            font-size: 2.4rem; 
-            letter-spacing: 1px;
+            margin-bottom: 12px; 
+            font-size: 1.7rem; 
+            font-weight: bold;
         }
         
         p { 
             color: #5a4b41; 
             margin-bottom: 20px; 
             font-size: 0.95rem; 
-            line-height: 1.6;
-            font-weight: 500;
+            line-height: 1.5;
+            font-weight: bold;
         }
 
         /* --- BUTTONS --- */
@@ -106,56 +99,60 @@
 
         .btn {
             padding: 10px 22px;
-            border: 2px solid #4a3b32;
-            border-radius: 50px;
+            border: 3px solid #4a3b32;
+            border-radius: 15px; /* Sedikit lebih kotak khas tombol game jadul */
             cursor: pointer;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700;
-            transition: all 0.2s ease;
+            font-weight: bold;
+            transition: all 0.1s ease;
             font-size: 0.9rem;
+            box-shadow: 3px 3px 0px #4a3b32;
+        }
+        
+        .btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #4a3b32;
         }
 
-        .btn-primary { background-color: #6e8e76; color: white; }
-        .btn-secondary { background-color: #d98880; color: white; position: absolute; }
+        .btn-primary { background-color: #7ba685; color: white; } /* Hijau matcha lebih cerah */
+        .btn-secondary { background-color: #e59892; color: white; position: absolute; } /* Pink pastel */
         .btn-next { margin-top: 15px; background-color: #4a3b32; color: white; width: 100%; }
 
         /* --- PAGE 2: RECIPE INTERACTIVE --- */
         .flavor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-        .flavor-item { background: #fcf8f2; border: 2px solid #bda38f; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; transition: transform 0.1s; }
-        .flavor-item:active { transform: scale(0.95); }
-        .blender { font-size: 3rem; margin: 15px 0; transition: transform 0.3s ease; }
-        .shake { animation: shakeAnim 0.5s infinite; }
+        .flavor-item { background: #fffdfa; border: 2px solid #4a3b32; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; box-shadow: 2px 2px 0px #4a3b32; }
+        .flavor-item:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #4a3b32; }
+        .blender { font-size: 3.5rem; margin: 10px 0; transition: transform 0.3s ease; }
+        .shake { animation: shakeAnim 0.4s infinite; }
         @keyframes shakeAnim { 
-            0% {transform: translate(2px, 1px) rotate(0deg);} 10% {transform: translate(-1px, -2px) rotate(-1deg);} 
-            20% {transform: translate(-3px, 0px) rotate(1deg);} 30% {transform: translate(0px, 2px) rotate(0deg);} 
-            40% {transform: translate(1px, -1px) rotate(1deg);} 50% {transform: translate(-1px, 2px) rotate(-1deg);} 
-            60% {transform: translate(-3px, 1px) rotate(0deg);} 70% {transform: translate(2px, 1px) rotate(-1deg);} 
-            80% {transform: translate(-1px, -1px) rotate(1deg);} 90% {transform: translate(2px, 2px) rotate(0deg);} 
-            100% {transform: translate(1px, -2px) rotate(-1deg);} 
+            0% {transform: translate(3px, 2px) rotate(0deg);} 20% {transform: translate(-2px, -3px) rotate(-2deg);} 
+            40% {transform: translate(-4px, 0px) rotate(2deg);} 60% {transform: translate(0px, 3px) rotate(0deg);} 
+            80% {transform: translate(2px, -2px) rotate(2deg);} 100% {transform: translate(2px, 2px) rotate(-1deg);} 
         }
 
         /* --- PAGE 4, 5, 6: ANTI-TUMPUK GALLERY --- */
         .grid-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
-        .thumb-img { width: 100%; height: 95px; object-fit: cover; border-radius: 10px; border: 2px solid #4a3b32; cursor: pointer; transition: transform 0.2s; }
-        .thumb-img:active { transform: scale(0.95); }
-        .preview-box { display: none; width: 100%; max-height: 200px; object-fit: contain; margin-top: 10px; border-radius: 12px; border: 2px dashed #6e8e76; animation: fadeIn 0.4s ease; }
+        .thumb-img { width: 100%; height: 95px; object-fit: cover; border-radius: 10px; border: 3px solid #4a3b32; cursor: pointer; }
+        .preview-box { display: none; width: 100%; max-height: 200px; object-fit: contain; margin-top: 10px; border-radius: 12px; border: 3px dashed #7ba685; animation: fadeIn 0.3s ease; }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
-        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 0.95rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; font-weight: 500; }
+        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 0.95rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; font-weight: bold; }
 
         /* --- VIDEO BLOCK --- */
-        video { width: 100%; border-radius: 15px; border: 2px solid #4a3b32; margin-bottom: 10px; background-color: black; }
+        video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
     </style>
 </head>
 <body>
 
+    <!-- Audio Player Core -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Background Layer Tetap -->
     <div class="fixed-bg"></div>
 
+    <!-- PAGE 1: GATEKEEPER -->
     <div class="page active" id="page1">
         <div class="card">
             <h1>Konfirmasi Dulu! 👑</h1>
@@ -167,10 +164,11 @@
         </div>
     </div>
 
+    <!-- PAGE 2: BLENDER SIMULATION -->
     <div class="page" id="page2">
         <div class="card">
             <h1>The Recipe of You 🍫</h1>
-            <p>Racik menu kesukaanmu! Ketuk (*tap*) 3 bahan di bawah ini untuk dimasukkan ke dalam blender rahasia:</p>
+            <p>Racik menu kesukaanmu! Ketuk 3 bahan di bawah ini untuk dimasukkan ke dalam blender rahasia:</p>
             <div class="flavor-grid">
                 <div class="flavor-item" onclick="addIngredient('Chocolate 🍫')">Chocolate</div>
                 <div class="flavor-item" onclick="addIngredient('Matcha 🍵')">Matcha</div>
@@ -180,11 +178,12 @@
                 <div class="flavor-item" onclick="addIngredient('Kucing Lucu 🐱')">Cat Love</div>
             </div>
             <div id="blenderMachine" class="blender">🏺</div>
-            <p id="mixStatus" style="font-weight: bold; color: #6e8e76; margin-bottom: 5px; min-height: 20px;"></p>
+            <p id="mixStatus" style="font-weight: bold; color: #7ba685; margin-bottom: 5px; min-height: 20px;"></p>
             <button id="btnPage2" class="btn btn-next" onclick="nextPage(3)" disabled style="opacity: 0.5;">Campur & Lihat Hasil ➡️</button>
         </div>
     </div>
 
+    <!-- PAGE 3: MAIN VIDEO -->
     <div class="page" id="page3">
         <div class="card">
             <h1>For My Ocean Girl 🌊</h1>
@@ -196,6 +195,7 @@
         </div>
     </div>
 
+    <!-- PAGE 4: PHOTO GALLERY I -->
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
@@ -211,10 +211,11 @@
         </div>
     </div>
 
+    <!-- PAGE 5: PHOTO GALLERY II -->
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
-            <p>Every small step with you matters. Silakan ketuk koleksi foto estetik selanjutnya:</p>
+            <p>Setiap langkah kecil bareng kamu itu seru banget. Silakan ketuk koleksi foto selanjutnya:</p>
             <div class="grid-gallery">
                 <img src="foto-editan-5a.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5a.jpg')">
                 <img src="foto-editan-5b.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5b.jpg')">
@@ -226,10 +227,11 @@
         </div>
     </div>
 
+    <!-- PAGE 6: BONUS GALLERY -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
-            <p>Sisi kedewasaanmu berpadu sempurna dengan humor recehmu. Ini kompilasi foto favoritku:</p>
+            <p>Koleksi kompilasi foto-foto dengan komuk dan pose paling receh kesukaan kita:</p>
             <div class="grid-gallery">
                 <img src="foto-editan-6a.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpg')">
                 <img src="foto-editan-6b.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6b.jpg')">
@@ -239,6 +241,7 @@
         </div>
     </div>
 
+    <!-- PAGE 7: LOVE LETTER (TYPEWRITER) -->
     <div class="page" id="page7">
         <div class="card" style="max-width: 480px;">
             <h1>To My Favorite Person 💌</h1>
@@ -267,9 +270,9 @@
 
         // --- 2. START WEBSITE & LAGU TRIGGER ---
         function startWebsite() {
-            audio.volume = 0.85; // Volume nyaman
+            audio.volume = 0.85;
             audio.play().then(() => {
-                console.log("Reality Club is playing dynamically!");
+                console.log("Reality Club is rockin!");
             }).catch(err => console.log("Audio Play Blocked:", err));
             nextPage(2);
         }
@@ -279,7 +282,7 @@
         function addIngredient(name) {
             if(ingredients.length < 3 && !ingredients.includes(name)) {
                 ingredients.push(name);
-                document.getElementById('mixStatus').innerText = "Bahan dimasukkan: " + ingredients.join(', ');
+                document.getElementById('mixStatus').innerText = "Bahan masuk: " + ingredients.join(', ');
                 
                 if(ingredients.length === 3) {
                     const blender = document.getElementById('blenderMachine');
@@ -291,7 +294,7 @@
                         const nextBtn = document.getElementById('btnPage2');
                         nextBtn.disabled = false;
                         nextBtn.style.opacity = "1";
-                    }, 1500);
+                    }, 1400);
                 }
             }
         }
@@ -315,7 +318,7 @@
         }
 
         // --- 6. GAMEPLAY: TYPEWRITER (PAGE 7) ---
-        const longLetterText = `Selamat ulang tahun yang luar biasa untuk wanitaku yang paling elegan, mandiri, dan dewasa. \n\nTerima kasih sudah selalu menjadi partner terbaik, pendengar yang hebat, sekaligus pelipur lara dengan selera humor recehmu yang selalu sukses bikin hari-hariku jauh lebih cerah.\n\nAku berharap di umur barumu ini, hidupmu selalu semanis cokelat dan es krim matcha kesukaanmu, serta semua koleksi Popmart Cry Baby Ocean Series yang kamu incar bisa segera berjejer rapi di kamarmu.\n\nTertanda,\nCowok Tersayangmu yang Paling Tampan 😎❤️`;
+        const longLetterText = `Selamat ulang tahun yang luar biasa untuk wanitaku yang paling mandiri dan dewasa. \n\nTerima kasih sudah selalu menjadi partner terbaik, pendengar yang hebat, sekaligus pelipur lara dengan selera humor recehmu yang selalu sukses bikin hari-hariku jauh lebih cerah.\n\nAku berharap di umur barumu ini, hidupmu selalu semanis cokelat dan es krim matcha kesukaanmu, serta semua koleksi Popmart Cry Baby Ocean Series yang kamu incar bisa segera berjejer rapi di kamarmu.\n\nTertanda,\nCowok Tersayangmu yang Paling Tampan 😎❤️`;
 
         function setupTypewriterPage() {
             nextPage(7);
@@ -331,7 +334,7 @@
                     setTimeout(typeWriter, 45); 
                 }
             }
-            setTimeout(typeWriter, 800);
+            setTimeout(typeWriter, 700);
         }
     </script>
 </body>
