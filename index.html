@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday My Fav Girl! 🎂🐱</title>
+    <title>Happy Birthday My Fav Girl! 🎂 Cat Love</title>
+    
+    <!-- PANGGIL GOOGLE FONTS (Revisi Kombinasi Font Organik & Anti-Kaku) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+
     <style>
         /* --- RESET & GLOBAL STYLE --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Full menggunakan Comic Sans untuk kesan kartun/doodle total */
-            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif; 
+            /* Isi menggunakan Patrick Hand agar lekukan tulisan tangan terasa natural & tidak kaku */
+            font-family: 'Patrick Hand', cursive; 
         }
 
         body, html {
@@ -63,28 +69,29 @@
 
         /* --- UI CARD (Doodle Crayon & Buku Gambar Style) --- */
         .card {
-            background: rgba(255, 255, 255, 0.95); /* Lebih pekat ala kertas gambar */
-            border: 4px dashed #5a4b41; /* Garis krayon cokelat dipertebal */
+            background: rgba(255, 255, 255, 0.93);
+            border: 4px dashed #5a4b41; /* Garis krayon cokelat tebal */
             border-radius: 20px;
             padding: 25px;
             max-width: 440px;
             width: 100%;
-            box-shadow: 8px 8px 0px rgba(74, 59, 50, 0.2); /* Shadow kaku khas komik/kartun */
+            box-shadow: 8px 8px 0px rgba(74, 59, 50, 0.2); /* Efek bayangan kertas 2D komik */
         }
 
         h1 { 
+            font-family: 'Caveat', cursive; /* Kembali ke tulisan tangan krayon estetik dari prompt sebelumnya */
             color: #4a3b32; 
-            margin-bottom: 12px; 
-            font-size: 1.7rem; 
-            font-weight: bold;
+            margin-bottom: 8px; 
+            font-size: 2.6rem; 
+            letter-spacing: 1px;
         }
         
         p { 
             color: #5a4b41; 
             margin-bottom: 20px; 
-            font-size: 0.95rem; 
+            font-size: 1.15rem; /* Ukuran disesuaikan karena jenis font Patrick Hand sedikit ramping */
             line-height: 1.5;
-            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
         /* --- BUTTONS --- */
@@ -100,11 +107,12 @@
         .btn {
             padding: 10px 22px;
             border: 3px solid #4a3b32;
-            border-radius: 15px; /* Sedikit lebih kotak khas tombol game jadul */
+            border-radius: 15px;
             cursor: pointer;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
             font-weight: bold;
             transition: all 0.1s ease;
-            font-size: 0.9rem;
             box-shadow: 3px 3px 0px #4a3b32;
         }
         
@@ -113,13 +121,13 @@
             box-shadow: 1px 1px 0px #4a3b32;
         }
 
-        .btn-primary { background-color: #7ba685; color: white; } /* Hijau matcha lebih cerah */
-        .btn-secondary { background-color: #e59892; color: white; position: absolute; } /* Pink pastel */
+        .btn-primary { background-color: #7ba685; color: white; } 
+        .btn-secondary { background-color: #e59892; color: white; position: absolute; } 
         .btn-next { margin-top: 15px; background-color: #4a3b32; color: white; width: 100%; }
 
         /* --- PAGE 2: RECIPE INTERACTIVE --- */
         .flavor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-        .flavor-item { background: #fffdfa; border: 2px solid #4a3b32; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.8rem; font-weight: bold; box-shadow: 2px 2px 0px #4a3b32; }
+        .flavor-item { background: #fffdfa; border: 2px solid #4a3b32; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.95rem; font-weight: bold; box-shadow: 2px 2px 0px #4a3b32; }
         .flavor-item:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #4a3b32; }
         .blender { font-size: 3.5rem; margin: 10px 0; transition: transform 0.3s ease; }
         .shake { animation: shakeAnim 0.4s infinite; }
@@ -136,7 +144,7 @@
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
-        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 0.95rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; font-weight: bold; }
+        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 1.15rem; white-space: pre-line; color: #4a3b32; line-height: 1.5; }
 
         /* --- VIDEO BLOCK --- */
         video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
@@ -215,7 +223,7 @@
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
-            <p>Setiap langkah kecil bareng kamu itu seru banget. Silakan ketuk koleksi foto selanjutnya:</p>
+            <p>Every small step with you matters. Silakan ketuk koleksi foto selanjutnya:</p>
             <div class="grid-gallery">
                 <img src="foto-editan-5a.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5a.jpg')">
                 <img src="foto-editan-5b.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5b.jpg')">
@@ -272,7 +280,7 @@
         function startWebsite() {
             audio.volume = 0.85;
             audio.play().then(() => {
-                console.log("Reality Club is rockin!");
+                console.log("Reality Club Active!");
             }).catch(err => console.log("Audio Play Blocked:", err));
             nextPage(2);
         }
