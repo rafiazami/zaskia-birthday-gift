@@ -94,14 +94,16 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- BUTTONS --- */
+        /* --- BUTTONS SYSTEM (FIXED TOTAL ANTI-TUMPANG TINDIH DI PC & HP) --- */
         .btn-container {
             display: flex;
             gap: 15px;
             justify-content: center;
+            align-items: center;
             width: 100%;
             position: relative;
-            height: 50px;
+            min-height: 70px; /* Jaga ruang aman biar stabil */
+            padding: 5px;
         }
 
         .btn {
@@ -112,8 +114,9 @@
             font-family: 'Patrick Hand', cursive;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: all 0.1s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
             box-shadow: 3px 3px 0px #4a3b32;
+            white-space: nowrap;
         }
         
         .btn:active {
@@ -121,9 +124,27 @@
             box-shadow: 1px 1px 0px #4a3b32;
         }
 
-        .btn-primary { background-color: #7ba685; color: white; } 
-        .btn-secondary { background-color: #e59892; color: white; position: absolute; } 
-        .btn-next { margin-top: 15px; background-color: #4a3b32; color: white; width: 100%; }
+        .btn-primary { 
+            background-color: #7ba685; 
+            color: white; 
+            z-index: 10;
+        } 
+        
+        .btn-secondary { 
+            background-color: #e59892; 
+            color: white; 
+            z-index: 5;
+            position: relative; /* Awalnya static berdampingan agar aman di PC/HP */
+            transition: left 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        } 
+        
+        .btn-next { 
+            margin-top: 15px; 
+            background-color: #4a3b32; 
+            color: white; 
+            width: 100%; 
+            display: block;
+        }
 
         /* --- PAGE 2: RECIPE INTERACTIVE --- */
         .flavor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
@@ -137,7 +158,7 @@
             80% {transform: translate(2px, -2px) rotate(2deg);} 100% {transform: translate(2px, 2px) rotate(-1deg);} 
         }
 
-        /* --- PAGE 4, 5, 6: OPTIMASI FOTO PORTRAIT 3:4 (ANTI-POTONG) --- */
+        /* --- PAGE 4, 5, 6: OPTIMASI FOTO PORTRAIT 3:4 (ANTI-POTONG & FIX PREVIEW AWAL) --- */
         .grid-gallery { 
             display: grid; 
             grid-template-columns: repeat(2, 1fr); 
@@ -160,10 +181,10 @@
         }
         
         .preview-box { 
-            display: none; 
+            display: none !important; /* Kunci sembunyi total sebelum gambar mini diketuk */
             width: 100%; 
             max-height: 280px; 
-            aspect-ratio: 3 / 4; /* Mengunci wadah preview agar tetap proporsional 3:4 */
+            aspect-ratio: 3 / 4; 
             object-fit: contain; 
             background-color: rgba(74, 59, 50, 0.05);
             margin-top: 10px; 
@@ -171,6 +192,12 @@
             border: 3px dashed #7ba685; 
             animation: fadeIn 0.3s ease; 
         }
+        
+        /* Class pembantu untuk menampilkan preview saat diketuk */
+        .preview-box.show {
+            display: block !important;
+        }
+        
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
@@ -179,6 +206,15 @@
 
         /* --- VIDEO BLOCK --- */
         video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
+
+        /* --- MEDIA QUERY LAYAR HP (PENGAMAN STRUKTUR VERTIKAL) --- */
+        @media (max-width: 480px) {
+            .btn-container {
+                flex-direction: column;
+                min-height: 110px; /* Longgarkan wadah di HP agar tidak tertumpuk teks card atas */
+                gap: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -192,7 +228,7 @@
     <div class="page active" id="page1">
         <div class="card">
             <h1>Konfirmasi Dulu! 👑</h1>
-            <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah cowok kamu ini adalah pria paling tampan dan tiada duanya di dunia?</p>
+            <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah aku adalah pria paling tampan dan tiada duanya di dunia? hehehehe</p>
             <div class="btn-container" id="escapeContainer">
                 <button class="btn btn-primary" onclick="startWebsite()">IYAAAA DONGGG ❤️</button>
                 <button class="btn btn-secondary" id="btnNo">IDIIIHHH PEDEE ABIESSS</button>
@@ -231,9 +267,7 @@
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
-            <p>Coba ketuk gambar mini di bawah ini ya, biar fotonya muncul dan bisa kamu lihat lebih jelas. Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa.
-
-Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe</p>
+            <p>Coba ketuk gambar mini di bawah ini ya, biar fotonya muncul dan bisa kamu lihat lebih jelas. Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa.<br><br>Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe</p>
             <div class="grid-gallery">
                 <img src="foto-editan-4a.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4a.jpg')">
                 <img src="foto-editan-4b.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4b.jpg')">
@@ -263,9 +297,7 @@ Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe</p>
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
-            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk.
-
-Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️</p>
+            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk.<br><br>Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️</p>
             <div class="grid-gallery">
                 <img src="foto-editan-6a.jpeg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpeg')">
                 <img src="foto-editan-6b.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6b.jpg')">
@@ -289,13 +321,21 @@ Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat
         const mainVideo = document.getElementById('mainVideo');
         let fadeTimer = null; // Menyimpan tracker interval audio fade
 
-        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR ---
+        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR DINAMIS (ANTI-TUMPANG TINDIH LENGKAP) ---
         function moveButton(e) {
             if(e.type === 'touchstart') e.preventDefault();
             const container = document.getElementById('escapeContainer');
+            
+            // Mengubah posisi dari relative ke absolute tepat saat didekati pertama kali
+            if(btnNo.style.position !== 'absolute') {
+                btnNo.style.position = 'absolute';
+            }
+
             const maxX = container.clientWidth - btnNo.clientWidth;
             const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * 260) - 130;
+            
+            // Koridor pembatas lari vertikal tombol biar ga lompat jauh keluar kartu
+            const randomY = Math.floor(Math.random() * 160) - 80;
 
             btnNo.style.left = randomX + 'px';
             btnNo.style.top = randomY + 'px';
@@ -312,7 +352,7 @@ Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat
             nextPage(2);
         }
 
-        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA BIAR SMOOTH) ---
+        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA SMOOTH) ---
         function fadeAudio(targetVolume) {
             clearInterval(fadeTimer);
             const fadeInterval = 50;  
@@ -356,16 +396,16 @@ Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat
             }
         }
 
-        // --- 5. GAMEPLAY: GALLERY PREVIEW ---
+        // --- 5. GAMEPLAY: GALLERY PREVIEW (FIX TAMPILAN AWAL PC) ---
         function previewImage(boxId, src) {
             const preview = document.getElementById(boxId);
             preview.src = src;
-            preview.style.display = "block";
+            preview.classList.add('show'); 
         }
 
         function pauseVideoAndNext() {
             mainVideo.pause();
-            fadeAudio(0.85); // Musik latar kembali naik perlahan ke 85% (Mulus!)
+            fadeAudio(0.85); 
             nextPage(4);
         }
 
@@ -375,15 +415,15 @@ Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat
             document.getElementById('page' + targetPageId).classList.add('active');
             
             if (targetPageId === 3) {
-                fadeAudio(0.15); // Musik latar meredup perlahan ke 15% demi Voice Over mas (Mulus!)
+                fadeAudio(0.15); 
             }
         }
 
-        // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) ---
+        // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) LENGKAP TANPA EROR KUTIP ---
         const longLetterParagraphs = [
             "\"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh ❤️\"",
             "\"Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! ❤️ ❤️ ❤️.\"",
-            "\"last but not least, aku cuman mau bilang... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi "Spark" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
+            "\"last but not least, aku cuman mau bilang... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi \\\"Spark\\\" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
         ];
 
         function setupTypewriterPage() {
@@ -412,7 +452,7 @@ Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat
                         if (currentParagraphIndex < longLetterParagraphs.length) {
                             activeParagraphElement = document.createElement('p');
                             box.appendChild(activeParagraphElement);
-                            setTimeout(typeWriter, 500); // Jeda antar-paragraf
+                            setTimeout(typeWriter, 500); 
                         }
                     }
                 }
