@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Fav Girl! 🎂 Cat Love</title>
     
-    <!-- PANGGIL GOOGLE FONTS (Kombinasi Font Doodle Alami & Anti-Kaku) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
@@ -147,11 +146,11 @@
             display: block;
         }
 
-        /* --- PAGE 2: RECIPE INTERACTIVE (FLEXBOX BIAR RASANYA KETENGAH JALI) --- */
+        /* --- PAGE 2: RECIPE INTERACTIVE (FLEXBOX MERAPAT KE TENGAH) --- */
         .flavor-grid { 
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Paksa sisa tombol baris kedua merapat ke tengah */
+            justify-content: center; 
             gap: 10px; 
             margin-bottom: 15px; 
             width: 100%;
@@ -166,7 +165,7 @@
             font-size: 0.95rem; 
             font-weight: bold; 
             box-shadow: 2px 2px 0px #4a3b32;
-            flex: 1 1 calc(33.333% - 10px); /* Baris pertama isi 3 tombol pas */
+            flex: 1 1 calc(33.333% - 10px); 
             min-width: 100px;
             max-width: 130px; 
             text-align: center;
@@ -180,6 +179,26 @@
             0% {transform: translate(3px, 2px) rotate(0deg);} 20% {transform: translate(-2px, -3px) rotate(-2deg);} 
             40% {transform: translate(-4px, 0px) rotate(2deg);} 60% {transform: translate(0px, 3px) rotate(0deg);} 
             80% {transform: translate(2px, -2px) rotate(2deg);} 100% {transform: translate(2px, 2px) rotate(-1deg);} 
+        }
+
+        /* --- PAGE 3: PORTRAIT VIDEO CONFIGURATION (ANTI-TUMPANG TINDIH HP) --- */
+        .video-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+
+        video { 
+            width: auto;
+            max-width: 100%;
+            height: 42vh; /* Kunci tinggi vertikal di layar HP agar tidak mendorong tombol */
+            aspect-ratio: 9 / 16; /* Kunci rasio portrait murni layaknya TikTok/Reels */
+            object-fit: cover;
+            border-radius: 15px; 
+            border: 3.5px solid #4a3b32; 
+            background-color: #000;
+            box-shadow: 4px 4px 0px rgba(74, 59, 50, 0.15);
         }
 
         /* --- PAGE 4, 5, 6: SCROLL MATRIX GALLERY SYSTEM --- */
@@ -219,29 +238,26 @@
         .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 1.15rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; }
         .letter-box p { margin-bottom: 15px; color: #4a3b32; }
 
-        /* --- VIDEO BLOCK --- */
-        video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
-
         @media (max-width: 480px) {
             .btn-container {
                 flex-direction: column;
                 min-height: 110px; 
                 gap: 12px;
             }
+            video {
+                height: 38vh; /* Sedikit dikecilkan di HP layar pendek biar tetap aman */
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Audio Player Core (Memanggil lagu.mp3) -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Background Layer Tetap -->
     <div class="fixed-bg"></div>
 
-    <!-- PAGE 1: GATEKEEPER -->
     <div class="page active" id="page1">
         <div class="card">
             <h1>Konfirmasi Dulu! 👑</h1>
@@ -253,7 +269,6 @@
         </div>
     </div>
 
-    <!-- PAGE 2: BLENDER SIMULATION -->
     <div class="page" id="page2">
         <div class="card">
             <h1>The Recipe of You 🍫</h1>
@@ -271,23 +286,23 @@
         </div>
     </div>
 
-    <!-- PAGE 3: MAIN VIDEO WITH DYNAMIC VOLUME CONTROL -->
     <div class="page" id="page3">
         <div class="card">
-            <h1>For My Beautiful Girl</h1>
-            <p>Tau ga sih kenapa aku suka banget minta pap kamu? Selain karena aku bisa liat kamu kapanpun dan dimanapun, aku juga bisa nyimpen momen-momen kecil kayak gini… yang mungkin sederhana, tapi berarti banget buat aku hehe</p>
-            <video id="mainVideo" controls playsinline>
-                <source src="video-editan.mp4" type="video/mp4">
-            </video>
+            <h1>For My Ocean Girl 🌊</h1>
+            <p style="margin-bottom: 12px;">Tau ga sih kenapa aku suka banget minta pap kamu? Momen-momen kecil kayak gini… sederhana, tapi berarti banget buat aku hehe</p>
+            <div class="video-container">
+                <video id="mainVideo" controls playsinline>
+                    <source src="video-editan.mp4" type="video/mp4">
+                </video>
+            </div>
             <button class="btn btn-next" onclick="pauseVideoAndNext()">Buka Galeri Foto ➡️</button>
         </div>
     </div>
 
-    <!-- PAGE 4: PHOTO GALLERY I (4 Foto Solo Shot Elegan Berpasangan) -->
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
-            <p>Sebagai permulaann, Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa sih so farr. Sebenernya masih banyak buangeettt sih… tapi ini TOP 4 versi aku hehe ❤️</p>
+            <p>Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa.<br><br>Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe (Scroll ke bawah yaa ❤️)</p>
             <div class="scroll-gallery">
                 <div class="grid-gallery">
                     <img src="foto-editan-4a.jpg" class="gallery-img">
@@ -300,11 +315,10 @@
         </div>
     </div>
 
-    <!-- PAGE 5: PHOTO GALLERY II (4 Foto Solo Shot Santai Berpasangan) -->
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
-            <p>Kalau yang ini, beberapa foto kamu yang menurut aku paling ekspresif sih wkwk. Tadinya aku mau masukin yang agak “aib-aib” juga… tapi aku ga tegaaaa 😭 </p>
+            <p>Kalau yang ini, beberapa foto kamu yang menurut aku paling ekspresif sih wkwk. Tadinya aku mau masukin yang agak “aib-aib” juga… tapi aku ga tegaaaa 😭 (Scroll ke bawah yaa ❤️):</p>
             <div class="scroll-gallery">
                 <div class="grid-gallery">
                     <img src="foto-editan-5a.jpg" class="gallery-img">
@@ -317,11 +331,10 @@
         </div>
     </div>
 
-    <!-- PAGE 6: BONUS GALLERY (2 Portrait Atas Kiri-Kanan, 1 Landscape Bawah Melebar Tengah) -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
-            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk. Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️ </p>
+            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk.<br><br>Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️ (Scroll ke bawah yaa ❤️)</p>
             <div class="scroll-gallery">
                 <div class="grid-gallery">
                     <img src="foto-editan-6a.jpeg" class="gallery-img">
@@ -333,7 +346,6 @@
         </div>
     </div>
 
-    <!-- PAGE 7: LOVE LETTER (TYPEWRITER) -->
     <div class="page" id="page7">
         <div class="card" style="max-width: 480px;">
             <h1>To My Favorite Person 💌</h1>
@@ -345,9 +357,9 @@
         const audio = document.getElementById('backsound');
         const btnNo = document.getElementById('btnNo');
         const mainVideo = document.getElementById('mainVideo');
-        let fadeTimer = null; // Menyimpan tracker interval audio fade
+        let fadeTimer = null; 
 
-        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR DINAMIS (ANTI-TUMPANG TINDIH TOTAL) ---
+        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR DINAMIS ---
         function moveButton(e) {
             if(e.type === 'touchstart') e.preventDefault();
             const container = document.getElementById('escapeContainer');
@@ -375,7 +387,7 @@
             nextPage(2);
         }
 
-        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA SMOOTH) ---
+        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE ---
         function fadeAudio(targetVolume) {
             clearInterval(fadeTimer);
             const fadeInterval = 50;  
@@ -439,7 +451,7 @@
         const longLetterParagraphs = [
             "\"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh ❤️\"",
             "\"Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! ❤️ ❤️ ❤️.\"",
-            "\"last but not least, aku cuman mau billing... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi Spark dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
+            "\"last but not least, aku cuman mau billing... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi \\\"Spark\\\" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
         ];
 
         function setupTypewriterPage() {
