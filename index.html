@@ -145,7 +145,8 @@
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
-        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 1.15rem; white-space: pre-line; color: #4a3b32; line-height: 1.5; }
+        .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 1.15rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; }
+        .letter-box p { margin-bottom: 15px; color: #4a3b32; }
 
         /* --- VIDEO BLOCK --- */
         video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
@@ -153,7 +154,7 @@
 </head>
 <body>
 
-    <!-- Audio Player Core (Memanggil lagu.mp3) -->
+    <!-- Audio Player Core -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
@@ -179,7 +180,6 @@
             <h1>The Recipe of You 🍫</h1>
             <p>Racik menu kesukaanmu! Ketuk 3 bahan di bawah ini untuk dimasukkan ke dalam blender rahasia:</p>
             <div class="flavor-grid">
-                <!-- Pilihan Cat Love Sudah Dihapus, Murni Makanan Kesukaannya -->
                 <div class="flavor-item" onclick="addIngredient('Chocolate 🍫')">Chocolate</div>
                 <div class="flavor-item" onclick="addIngredient('Matcha 🍵')">Matcha</div>
                 <div class="flavor-item" onclick="addIngredient('Blueberry 🍇')">Blueberry</div>
@@ -236,7 +236,7 @@
         </div>
     </div>
 
-    <!-- PAGE 6: BONUS GALLERY (2 Foto Berdua Paling Receh) -->
+    <!-- PAGE 6: BONUS GALLERY (3 Foto Berdua Paling Receh) -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
@@ -288,14 +288,13 @@
             nextPage(2);
         }
 
-        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA BIAR SMOOTH) ---
+        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE ---
         function fadeAudio(targetVolume) {
-            clearInterval(fadeTimer); // Reset fade sebelumnya jika user klik terlalu cepat
-            const fadeInterval = 50;  // Waktu jeda transisi per step (milidetik)
-            const fadeStep = 0.05;    // Besaran perubahan volume per step
+            clearInterval(fadeTimer);
+            const fadeInterval = 50;  
+            const fadeStep = 0.05;    
             
             fadeTimer = setInterval(() => {
-                // Gunakan toFixed(2) untuk menghindari bug angka desimal JavaScript
                 let currentVol = parseFloat(audio.volume.toFixed(2));
                 let targetVol = parseFloat(targetVolume.toFixed(2));
 
@@ -340,49 +339,64 @@
             preview.style.display = "block";
         }
 
-        // PERALIHAN KELUAR DARI PAGE VIDEO (VOLUME NAIK HALUS)
         function pauseVideoAndNext() {
             mainVideo.pause();
-            fadeAudio(0.85); // Musik latar kembali naik perlahan ke 85% (Mulus!)
+            fadeAudio(0.85); 
             nextPage(4);
         }
 
-        // --- 6. ENGINE: NAVIGATION & PERALIHAN MASUK PAGE VIDEO (VOLUME TURUN HALUS) ---
+        // --- 6. ENGINE: NAVIGATION & DYNAMIC VOLUME CONTROL ---
         function nextPage(targetPageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + targetPageId).classList.add('active');
             
             if (targetPageId === 3) {
-                fadeAudio(0.15); // Musik latar meredup perlahan ke 15% demi mendengarkan Voice Over mas (Mulus!)
+                fadeAudio(0.15); 
             }
         }
 
         // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) ---
-        const longLetterText = `"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh &hearts;"
-                </p>
-                <p style="margin-top: 10px;">
-                    "Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. *I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! &hearts; &hearts; &hearts;."
-                </p>
-                <p style="margin-top: 10px;">
-                    "last but not least, aku cuman mau bilang... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi \"Spark\" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku"
-                </p>
-            </div>
+        // Teks menggunakan format array string paragraf murni agar eksekusi innerHTML aman dan tanda kutip batin rapi
+        const longLetterParagraphs = [
+            "\"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh ❤️\"",
+            "\"Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! ❤️ ❤️ ❤️.\"",
+            "\"last but not least, aku cuman mau bilang... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi \\\"Spark\\\" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
+        ];
 
         function setupTypewriterPage() {
             nextPage(7);
-            let i = 0;
             const box = document.getElementById('typewriterBox');
             box.innerHTML = ""; 
             
+            let currentParagraphIndex = 0;
+            let currentCharacterIndex = 0;
+            
+            // Membuat elemen p pertama untuk wadah ngetik
+            let activeParagraphElement = document.createElement('p');
+            box.appendChild(activeParagraphElement);
+
             function typeWriter() {
-                if (i < longLetterText.length) {
-                    box.innerHTML += longLetterText.charAt(i);
-                    i++;
-                    box.scrollTop = box.scrollHeight; 
-                    setTimeout(typeWriter, 45); 
+                if (currentParagraphIndex < longLetterParagraphs.length) {
+                    const currentText = longLetterParagraphs[currentParagraphIndex];
+                    
+                    if (currentCharacterIndex < currentText.length) {
+                        activeParagraphElement.innerHTML += currentText.charAt(currentCharacterIndex);
+                        currentCharacterIndex++;
+                        box.scrollTop = box.scrollHeight; // Auto scroll kebawah pas ngetik di HP
+                        setTimeout(typeWriter, 45); 
+                    } else {
+                        // Jika paragraf ini selesai, pindah ke paragraf berikutnya setelah jeda sedikit
+                        currentParagraphIndex++;
+                        currentCharacterIndex = 0;
+                        if (currentParagraphIndex < longLetterParagraphs.length) {
+                            activeParagraphElement = document.createElement('p');
+                            box.appendChild(activeParagraphElement);
+                            setTimeout(typeWriter, 500); // Jeda sebelum paragraf baru dimulai
+                        }
+                    }
                 }
             }
-            setTimeout(typeWriter, 700);
+            setTimeout(typeWriter, 800);
         }
     </script>
 </body>
