@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Fav Girl! 🎂 Cat Love</title>
     
-    <!-- PANGGIL GOOGLE FONTS (Revisi Kombinasi Font Organik & Anti-Kaku) -->
+    <!-- PANGGIL GOOGLE FONTS (Kombinasi Font Doodle Alami & Anti-Kaku) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
@@ -16,8 +16,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Isi menggunakan Patrick Hand agar lekukan tulisan tangan terasa natural & tidak kaku */
-            font-family: 'Patrick Hand', cursive; 
+            font-family: 'Patrick Hand', cursive; /* Tekstur tulisan tangan organik bebas kaku */
         }
 
         body, html {
@@ -41,7 +40,7 @@
             z-index: 1;
         }
 
-        /* --- PAGES SYSTEM --- */
+        /* --- SUPER SMOOTH PAGES SYSTEM --- */
         .page {
             position: absolute;
             top: 0;
@@ -54,32 +53,34 @@
             align-items: center;
             padding: 20px;
             text-align: center;
+            
+            /* Efek Transisi Ditingkatkan Menjadi Sangat Halus (Scale & Cross-fade) */
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            transform: scale(0.93);
+            transform: scale(0.9) translateY(10px); /* Efek sedikit mengapung dari bawah */
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 2;
         }
 
         .page.active {
             opacity: 1;
             pointer-events: auto;
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         /* --- UI CARD (Doodle Crayon & Buku Gambar Style) --- */
         .card {
             background: rgba(255, 255, 255, 0.93);
-            border: 4px dashed #5a4b41; /* Garis krayon cokelat tebal */
+            border: 4px dashed #5a4b41; /* Garis putus-putus krayon tebal */
             border-radius: 20px;
             padding: 25px;
             max-width: 440px;
             width: 100%;
-            box-shadow: 8px 8px 0px rgba(74, 59, 50, 0.2); /* Efek bayangan kertas 2D komik */
+            box-shadow: 8px 8px 0px rgba(74, 59, 50, 0.2); /* Efek pop-up kertas komik 2D */
         }
 
         h1 { 
-            font-family: 'Caveat', cursive; /* Kembali ke tulisan tangan krayon estetik dari prompt sebelumnya */
+            font-family: 'Caveat', cursive; /* Judul estetik tulisan tangan krayon cair */
             color: #4a3b32; 
             margin-bottom: 8px; 
             font-size: 2.6rem; 
@@ -89,7 +90,7 @@
         p { 
             color: #5a4b41; 
             margin-bottom: 20px; 
-            font-size: 1.15rem; /* Ukuran disesuaikan karena jenis font Patrick Hand sedikit ramping */
+            font-size: 1.15rem; 
             line-height: 1.5;
             letter-spacing: 0.5px;
         }
@@ -152,7 +153,7 @@
 </head>
 <body>
 
-    <!-- Audio Player Core -->
+    <!-- Audio Player Core (Memanggil lagu.mp3) -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
@@ -166,8 +167,8 @@
             <h1>Konfirmasi Dulu! 👑</h1>
             <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah cowok kamu ini adalah pria paling tampan dan tiada duanya di dunia?</p>
             <div class="btn-container" id="escapeContainer">
-                <button class="btn btn-primary" onclick="startWebsite()">Iya, Setuju Banget! ❤️</button>
-                <button class="btn btn-secondary" id="btnNo">Nggak Sempet Lah</button>
+                <button class="btn btn-primary" onclick="startWebsite()">IYAAAA DONGGG ❤️</button>
+                <button class="btn btn-secondary" id="btnNo">IDIIIHHH PEDEE ABIESSS</button>
             </div>
         </div>
     </div>
@@ -178,12 +179,12 @@
             <h1>The Recipe of You 🍫</h1>
             <p>Racik menu kesukaanmu! Ketuk 3 bahan di bawah ini untuk dimasukkan ke dalam blender rahasia:</p>
             <div class="flavor-grid">
+                <!-- Pilihan Cat Love Sudah Dihapus, Murni Makanan Kesukaannya -->
                 <div class="flavor-item" onclick="addIngredient('Chocolate 🍫')">Chocolate</div>
                 <div class="flavor-item" onclick="addIngredient('Matcha 🍵')">Matcha</div>
                 <div class="flavor-item" onclick="addIngredient('Blueberry 🍇')">Blueberry</div>
                 <div class="flavor-item" onclick="addIngredient('Almond 🌰')">Almond</div>
                 <div class="flavor-item" onclick="addIngredient('Vanilla 🍦')">Vanilla</div>
-                <div class="flavor-item" onclick="addIngredient('Kucing Lucu 🐱')">Cat Love</div>
             </div>
             <div id="blenderMachine" class="blender">🏺</div>
             <p id="mixStatus" style="font-weight: bold; color: #7ba685; margin-bottom: 5px; min-height: 20px;"></p>
@@ -191,7 +192,7 @@
         </div>
     </div>
 
-    <!-- PAGE 3: MAIN VIDEO -->
+    <!-- PAGE 3: MAIN VIDEO WITH DYNAMIC VOLUME CONTROL -->
     <div class="page" id="page3">
         <div class="card">
             <h1>For My Ocean Girl 🌊</h1>
@@ -203,7 +204,7 @@
         </div>
     </div>
 
-    <!-- PAGE 4: PHOTO GALLERY I -->
+    <!-- PAGE 4: PHOTO GALLERY I (4 Foto Solo Shot Elegan) -->
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
@@ -219,7 +220,7 @@
         </div>
     </div>
 
-    <!-- PAGE 5: PHOTO GALLERY II -->
+    <!-- PAGE 5: PHOTO GALLERY II (4 Foto Solo Shot Santai / Hobi) -->
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
@@ -235,7 +236,7 @@
         </div>
     </div>
 
-    <!-- PAGE 6: BONUS GALLERY -->
+    <!-- PAGE 6: BONUS GALLERY (2 Foto Berdua Paling Receh) -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
@@ -261,6 +262,7 @@
         const audio = document.getElementById('backsound');
         const btnNo = document.getElementById('btnNo');
         const mainVideo = document.getElementById('mainVideo');
+        let fadeTimer = null; // Menyimpan tracker interval audio fade
 
         // --- 1. GAMEPLAY: TOMBOL MENGHINDAR ---
         function moveButton(e) {
@@ -285,7 +287,30 @@
             nextPage(2);
         }
 
-        // --- 3. GAMEPLAY: BLENDER COMPONENT ---
+        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA BIAR SMOOTH) ---
+        function fadeAudio(targetVolume) {
+            clearInterval(fadeTimer); // Reset fade sebelumnya jika user klik terlalu cepat
+            const fadeInterval = 50;  // Waktu jeda transisi per step (milidetik)
+            const fadeStep = 0.05;    // Besaran perubahan volume per step
+            
+            fadeTimer = setInterval(() => {
+                // Gunakan toFixed(2) untuk menghindari bug angka desimal JavaScript
+                let currentVol = parseFloat(audio.volume.toFixed(2));
+                let targetVol = parseFloat(targetVolume.toFixed(2));
+
+                if (currentVol < targetVol) {
+                    audio.volume = Math.min(targetVol, currentVol + fadeStep);
+                } else if (currentVol > targetVol) {
+                    audio.volume = Math.max(targetVol, currentVol - fadeStep);
+                }
+                
+                if (parseFloat(audio.volume.toFixed(2)) === targetVol) {
+                    clearInterval(fadeTimer);
+                }
+            }, fadeInterval);
+        }
+
+        // --- 4. GAMEPLAY: BLENDER COMPONENT ---
         let ingredients = [];
         function addIngredient(name) {
             if(ingredients.length < 3 && !ingredients.includes(name)) {
@@ -307,25 +332,31 @@
             }
         }
 
-        // --- 4. GAMEPLAY: GALLERY PREVIEW ---
+        // --- 5. GAMEPLAY: GALLERY PREVIEW ---
         function previewImage(boxId, src) {
             const preview = document.getElementById(boxId);
             preview.src = src;
             preview.style.display = "block";
         }
 
+        // PERALIHAN KELUAR DARI PAGE VIDEO (VOLUME NAIK HALUS)
         function pauseVideoAndNext() {
             mainVideo.pause();
+            fadeAudio(0.85); // Musik latar kembali naik perlahan ke 85% (Mulus!)
             nextPage(4);
         }
 
-        // --- 5. ENGINE: NAVIGASI HALAMAN ---
+        // --- 6. ENGINE: NAVIGATION & PERALIHAN MASUK PAGE VIDEO (VOLUME TURUN HALUS) ---
         function nextPage(targetPageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + targetPageId).classList.add('active');
+            
+            if (targetPageId === 3) {
+                fadeAudio(0.15); // Musik latar meredup perlahan ke 15% demi mendengarkan Voice Over mas (Mulus!)
+            }
         }
 
-        // --- 6. GAMEPLAY: TYPEWRITER (PAGE 7) ---
+        // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) ---
         const longLetterText = `Selamat ulang tahun yang luar biasa untuk wanitaku yang paling mandiri dan dewasa. \n\nTerima kasih sudah selalu menjadi partner terbaik, pendengar yang hebat, sekaligus pelipur lara dengan selera humor recehmu yang selalu sukses bikin hari-hariku jauh lebih cerah.\n\nAku berharap di umur barumu ini, hidupmu selalu semanis cokelat dan es krim matcha kesukaanmu, serta semua koleksi Popmart Cry Baby Ocean Series yang kamu incar bisa segera berjejer rapi di kamarmu.\n\nTertanda,\nCowok Tersayangmu yang Paling Tampan 😎❤️`;
 
         function setupTypewriterPage() {
