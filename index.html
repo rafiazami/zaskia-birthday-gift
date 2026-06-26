@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Fav Girl! 🎂 Cat Love</title>
     
+    <!-- PANGGIL GOOGLE FONTS (Kombinasi Font Doodle Alami & Anti-Kaku) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
@@ -94,7 +95,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* --- BUTTONS SYSTEM (FIXED TOTAL ANTI-TUMPANG TINDIH DI PC & HP) --- */
+        /* --- BUTTONS SYSTEM (FIXED TOTAL ANTI-TUMPANG TINDIH) --- */
         .btn-container {
             display: flex;
             gap: 15px;
@@ -134,7 +135,7 @@
             background-color: #e59892; 
             color: white; 
             z-index: 5;
-            position: relative; /* Awalnya static berdampingan agar aman di PC/HP */
+            position: relative; 
             transition: left 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         } 
         
@@ -146,10 +147,33 @@
             display: block;
         }
 
-        /* --- PAGE 2: RECIPE INTERACTIVE --- */
-        .flavor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-        .flavor-item { background: #fffdfa; border: 2px solid #4a3b32; border-radius: 12px; padding: 10px; cursor: pointer; font-size: 0.95rem; font-weight: bold; box-shadow: 2px 2px 0px #4a3b32; }
+        /* --- PAGE 2: RECIPE INTERACTIVE (FLEXBOX BIAR RASANYA KETENGAH JALI) --- */
+        .flavor-grid { 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Paksa sisa tombol baris kedua merapat ke tengah */
+            gap: 10px; 
+            margin-bottom: 15px; 
+            width: 100%;
+        }
+        
+        .flavor-item { 
+            background: #fffdfa; 
+            border: 2px solid #4a3b32; 
+            border-radius: 12px; 
+            padding: 10px 15px; 
+            cursor: pointer; 
+            font-size: 0.95rem; 
+            font-weight: bold; 
+            box-shadow: 2px 2px 0px #4a3b32;
+            flex: 1 1 calc(33.333% - 10px); /* Baris pertama isi 3 tombol pas */
+            min-width: 100px;
+            max-width: 130px; 
+            text-align: center;
+        }
+        
         .flavor-item:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0px #4a3b32; }
+        
         .blender { font-size: 3.5rem; margin: 10px 0; transition: transform 0.3s ease; }
         .shake { animation: shakeAnim 0.4s infinite; }
         @keyframes shakeAnim { 
@@ -158,47 +182,38 @@
             80% {transform: translate(2px, -2px) rotate(2deg);} 100% {transform: translate(2px, 2px) rotate(-1deg);} 
         }
 
-        /* --- PAGE 4, 5, 6: OPTIMASI FOTO PORTRAIT 3:4 (ANTI-POTONG & FIX PREVIEW AWAL) --- */
-        .grid-gallery { 
-            display: grid; 
+        /* --- PAGE 4, 5, 6: SCROLL MATRIX GALLERY SYSTEM --- */
+        .scroll-gallery {
+            max-height: 48vh; 
+            overflow-y: auto;  
+            padding-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .grid-gallery {
+            display: grid;
             grid-template-columns: repeat(2, 1fr); 
-            gap: 12px; 
-            margin-bottom: 12px; 
+            gap: 12px;
         }
-        
-        .thumb-img { 
+
+        .scroll-gallery::-webkit-scrollbar { width: 6px; }
+        .scroll-gallery::-webkit-scrollbar-thumb { background-color: #5a4b41; border-radius: 10px; }
+
+        .gallery-img { 
             width: 100%; 
-            aspect-ratio: 3 / 4; /* Mengunci aspek rasio grid mini menjadi 3:4 portrait */
-            object-fit: cover; 
-            border-radius: 12px; 
-            border: 3px solid #4a3b32; 
-            cursor: pointer; 
-            transition: transform 0.2s ease;
-        }
-        
-        .thumb-img:active {
-            transform: scale(0.95);
-        }
-        
-        .preview-box { 
-            display: none !important; /* Kunci sembunyi total sebelum gambar mini diketuk */
-            width: 100%; 
-            max-height: 280px; 
             aspect-ratio: 3 / 4; 
-            object-fit: contain; 
-            background-color: rgba(74, 59, 50, 0.05);
-            margin-top: 10px; 
+            object-fit: cover; 
             border-radius: 15px; 
-            border: 3px dashed #7ba685; 
-            animation: fadeIn 0.3s ease; 
+            border: 3.5px solid #4a3b32; 
+            box-shadow: 4px 4px 0px rgba(74, 59, 50, 0.15);
         }
-        
-        /* Class pembantu untuk menampilkan preview saat diketuk */
-        .preview-box.show {
-            display: block !important;
+
+        /* KUNCI UTAMA LANDSCAPE FOTO 6C MELEBAR DI TENGAH BAWAH */
+        .img-landscape {
+            grid-column: span 2; 
+            aspect-ratio: 16 / 9; 
+            object-fit: cover;
         }
-        
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
         .letter-box { max-height: 45vh; overflow-y: auto; text-align: left; padding-right: 8px; font-size: 1.15rem; white-space: pre-line; color: #4a3b32; line-height: 1.6; }
@@ -207,11 +222,10 @@
         /* --- VIDEO BLOCK --- */
         video { width: 100%; border-radius: 15px; border: 3px solid #4a3b32; margin-bottom: 10px; background-color: black; }
 
-        /* --- MEDIA QUERY LAYAR HP (PENGAMAN STRUKTUR VERTIKAL) --- */
         @media (max-width: 480px) {
             .btn-container {
                 flex-direction: column;
-                min-height: 110px; /* Longgarkan wadah di HP agar tidak tertumpuk teks card atas */
+                min-height: 110px; 
                 gap: 12px;
             }
         }
@@ -219,16 +233,19 @@
 </head>
 <body>
 
+    <!-- Audio Player Core (Memanggil lagu.mp3) -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Background Layer Tetap -->
     <div class="fixed-bg"></div>
 
+    <!-- PAGE 1: GATEKEEPER -->
     <div class="page active" id="page1">
         <div class="card">
             <h1>Konfirmasi Dulu! 👑</h1>
-            <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah aku adalah pria paling tampan dan tiada duanya di dunia? hehehehe</p>
+            <p>Sebelum masuk, tolong konfirmasi dengan jujur ya manis. Apakah cowok kamu ini adalah pria paling tampan dan tiada duanya di dunia?</p>
             <div class="btn-container" id="escapeContainer">
                 <button class="btn btn-primary" onclick="startWebsite()">IYAAAA DONGGG ❤️</button>
                 <button class="btn btn-secondary" id="btnNo">IDIIIHHH PEDEE ABIESSS</button>
@@ -236,6 +253,7 @@
         </div>
     </div>
 
+    <!-- PAGE 2: BLENDER SIMULATION -->
     <div class="page" id="page2">
         <div class="card">
             <h1>The Recipe of You 🍫</h1>
@@ -253,9 +271,10 @@
         </div>
     </div>
 
+    <!-- PAGE 3: MAIN VIDEO WITH DYNAMIC VOLUME CONTROL -->
     <div class="page" id="page3">
         <div class="card">
-            <h1>For My Ocean Girl 🌊</h1>
+            <h1>For My Beautiful Girl</h1>
             <p>Tau ga sih kenapa aku suka banget minta pap kamu? Selain karena aku bisa liat kamu kapanpun dan dimanapun, aku juga bisa nyimpen momen-momen kecil kayak gini… yang mungkin sederhana, tapi berarti banget buat aku hehe</p>
             <video id="mainVideo" controls playsinline>
                 <source src="video-editan.mp4" type="video/mp4">
@@ -264,50 +283,57 @@
         </div>
     </div>
 
+    <!-- PAGE 4: PHOTO GALLERY I (4 Foto Solo Shot Elegan Berpasangan) -->
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
-            <p>Coba ketuk gambar mini di bawah ini ya, biar fotonya muncul dan bisa kamu lihat lebih jelas. Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa.<br><br>Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe</p>
-            <div class="grid-gallery">
-                <img src="foto-editan-4a.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4a.jpg')">
-                <img src="foto-editan-4b.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4b.jpg')">
-                <img src="foto-editan-4c.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4c.jpg')">
-                <img src="foto-editan-4d.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4d.jpg')">
+            <p>Coba ketuk gambar mini di bawah ini ya, biar fotonya muncul dan bisa kamu lihat lebih jelas. Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa. Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe (Scroll ke bawah yaa ❤️)</p>
+            <div class="scroll-gallery">
+                <div class="grid-gallery">
+                    <img src="foto-editan-4a.jpg" class="gallery-img">
+                    <img src="foto-editan-4b.jpg" class="gallery-img">
+                    <img src="foto-editan-4c.jpg" class="gallery-img">
+                    <img src="foto-editan-4d.jpg" class="gallery-img">
+                </div>
             </div>
-            <img id="imgPreview1" class="preview-box">
             <button class="btn btn-next" onclick="nextPage(5)">Lihat Lembar Ke-2 ➡️</button>
         </div>
     </div>
 
+    <!-- PAGE 5: PHOTO GALLERY II (4 Foto Solo Shot Santai Berpasangan) -->
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
-            <p>Kalau yang ini, beberapa foto kamu yang menurut aku paling ekspresif sih wkwk. Tadinya aku mau masukin yang agak “aib-aib” juga… tapi aku ga tegaaaa 😭:</p>
-            <div class="grid-gallery">
-                <img src="foto-editan-5a.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5a.jpg')">
-                <img src="foto-editan-5b.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5b.jpg')">
-                <img src="foto-editan-5c.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5c.jpg')">
-                <img src="foto-editan-5d.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5d.jpg')">
+            <p>Kalau yang ini, beberapa foto kamu yang menurut aku paling ekspresif sih wkwk. Tadinya aku mau masukin yang agak “aib-aib” juga… tapi aku ga tegaaaa 😭 </p>
+            <div class="scroll-gallery">
+                <div class="grid-gallery">
+                    <img src="foto-editan-5a.jpg" class="gallery-img">
+                    <img src="foto-editan-5b.jpg" class="gallery-img">
+                    <img src="foto-editan-5c.jpg" class="gallery-img">
+                    <img src="foto-editan-5d.jpg" class="gallery-img">
+                </div>
             </div>
-            <img id="imgPreview2" class="preview-box">
             <button class="btn btn-next" onclick="nextPage(6)">Satu Lembar Lagi ➡️</button>
         </div>
     </div>
 
+    <!-- PAGE 6: BONUS GALLERY (2 Portrait Atas Kiri-Kanan, 1 Landscape Bawah Melebar Tengah) -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
-            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk.<br><br>Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️</p>
-            <div class="grid-gallery">
-                <img src="foto-editan-6a.jpeg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpeg')">
-                <img src="foto-editan-6b.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6b.jpg')">
-                <img src="foto-editan-6c.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6c.jpg')">
+            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk. Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️ (Scroll ke bawah yaa ❤️)</p>
+            <div class="scroll-gallery">
+                <div class="grid-gallery">
+                    <img src="foto-editan-6a.jpeg" class="gallery-img">
+                    <img src="foto-editan-6b.jpg" class="gallery-img">
+                    <img src="foto-editan-6c.jpg" class="gallery-img img-landscape">
+                </div>
             </div>
-            <img id="imgPreview3" class="preview-box">
             <button class="btn btn-next" onclick="setupTypewriterPage()">Halaman Terakhir... ➡️</button>
         </div>
     </div>
 
+    <!-- PAGE 7: LOVE LETTER (TYPEWRITER) -->
     <div class="page" id="page7">
         <div class="card" style="max-width: 480px;">
             <h1>To My Favorite Person 💌</h1>
@@ -321,20 +347,17 @@
         const mainVideo = document.getElementById('mainVideo');
         let fadeTimer = null; // Menyimpan tracker interval audio fade
 
-        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR DINAMIS (ANTI-TUMPANG TINDIH LENGKAP) ---
+        // --- 1. GAMEPLAY: TOMBOL MENGHINDAR DINAMIS (ANTI-TUMPANG TINDIH TOTAL) ---
         function moveButton(e) {
             if(e.type === 'touchstart') e.preventDefault();
             const container = document.getElementById('escapeContainer');
             
-            // Mengubah posisi dari relative ke absolute tepat saat didekati pertama kali
             if(btnNo.style.position !== 'absolute') {
                 btnNo.style.position = 'absolute';
             }
 
             const maxX = container.clientWidth - btnNo.clientWidth;
             const randomX = Math.floor(Math.random() * maxX);
-            
-            // Koridor pembatas lari vertikal tombol biar ga lompat jauh keluar kartu
             const randomY = Math.floor(Math.random() * 160) - 80;
 
             btnNo.style.left = randomX + 'px';
@@ -396,20 +419,13 @@
             }
         }
 
-        // --- 5. GAMEPLAY: GALLERY PREVIEW (FIX TAMPILAN AWAL PC) ---
-        function previewImage(boxId, src) {
-            const preview = document.getElementById(boxId);
-            preview.src = src;
-            preview.classList.add('show'); 
-        }
-
         function pauseVideoAndNext() {
             mainVideo.pause();
             fadeAudio(0.85); 
             nextPage(4);
         }
 
-        // --- 6. ENGINE: NAVIGATION & DYNAMIC VOLUME CONTROL ---
+        // --- 5. ENGINE: NAVIGATION & DYNAMIC VOLUME CONTROL ---
         function nextPage(targetPageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + targetPageId).classList.add('active');
@@ -419,11 +435,11 @@
             }
         }
 
-        // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) LENGKAP TANPA EROR KUTIP ---
+        // --- 6. GAMEPLAY: TYPEWRITER (PAGE 7) ---
         const longLetterParagraphs = [
             "\"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh ❤️\"",
             "\"Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! ❤️ ❤️ ❤️.\"",
-            "\"last but not least, aku cuman mau bilang... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi \\\"Spark\\\" dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
+            "\"last but not least, aku cuman mau billing... kalo aku ngerasa beruntung banget karena kehadiran kamu di hidup aku, terima kasih sudah jadi Spark dalam hidup aku, terima kasih sudah mengisi hari hari aku yg flat ini jadi lebih berwarna. terima kasih sudah mau bersabar menghadapi segala tingkah aku. jangan pernah ada kata nyerah, capek, dan udahan lagi yaa deee. aku mau kamu jadi pelabuhan terakhir aku, tempat berlabuhnya kapal hati ini. aku mau kamu jadi layar kapal aku, yang kasih arah disetiap langkah aku, yang tetap bikin aku melaju walau angin dan badai menerjang, dan yang selalu jadi tujuan pertama, terakhir dan satu-satunya di setiap perjalanan hidup aku.\""
         ];
 
         function setupTypewriterPage() {
