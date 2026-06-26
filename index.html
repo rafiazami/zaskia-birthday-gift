@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday My Fav Girl! 🎂 Cat Love</title>
     
-    <!-- PANGGIL GOOGLE FONTS (Kombinasi Font Doodle Alami & Anti-Kaku) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
@@ -138,10 +137,40 @@
             80% {transform: translate(2px, -2px) rotate(2deg);} 100% {transform: translate(2px, 2px) rotate(-1deg);} 
         }
 
-        /* --- PAGE 4, 5, 6: ANTI-TUMPUK GALLERY --- */
-        .grid-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px; }
-        .thumb-img { width: 100%; height: 95px; object-fit: cover; border-radius: 10px; border: 3px solid #4a3b32; cursor: pointer; }
-        .preview-box { display: none; width: 100%; max-height: 200px; object-fit: contain; margin-top: 10px; border-radius: 12px; border: 3px dashed #7ba685; animation: fadeIn 0.3s ease; }
+        /* --- PAGE 4, 5, 6: OPTIMASI FOTO PORTRAIT 3:4 (ANTI-POTONG) --- */
+        .grid-gallery { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+            margin-bottom: 12px; 
+        }
+        
+        .thumb-img { 
+            width: 100%; 
+            aspect-ratio: 3 / 4; /* Mengunci aspek rasio grid mini menjadi 3:4 portrait */
+            object-fit: cover; 
+            border-radius: 12px; 
+            border: 3px solid #4a3b32; 
+            cursor: pointer; 
+            transition: transform 0.2s ease;
+        }
+        
+        .thumb-img:active {
+            transform: scale(0.95);
+        }
+        
+        .preview-box { 
+            display: none; 
+            width: 100%; 
+            max-height: 280px; 
+            aspect-ratio: 3 / 4; /* Mengunci wadah preview agar tetap proporsional 3:4 */
+            object-fit: contain; 
+            background-color: rgba(74, 59, 50, 0.05);
+            margin-top: 10px; 
+            border-radius: 15px; 
+            border: 3px dashed #7ba685; 
+            animation: fadeIn 0.3s ease; 
+        }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* --- PAGE 7: TYPEWRITER BOX --- */
@@ -154,15 +183,12 @@
 </head>
 <body>
 
-    <!-- Audio Player Core -->
     <audio id="backsound" loop preload="auto">
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Background Layer Tetap -->
     <div class="fixed-bg"></div>
 
-    <!-- PAGE 1: GATEKEEPER -->
     <div class="page active" id="page1">
         <div class="card">
             <h1>Konfirmasi Dulu! 👑</h1>
@@ -174,7 +200,6 @@
         </div>
     </div>
 
-    <!-- PAGE 2: BLENDER SIMULATION -->
     <div class="page" id="page2">
         <div class="card">
             <h1>The Recipe of You 🍫</h1>
@@ -192,11 +217,10 @@
         </div>
     </div>
 
-    <!-- PAGE 3: MAIN VIDEO WITH DYNAMIC VOLUME CONTROL -->
     <div class="page" id="page3">
         <div class="card">
             <h1>For My Ocean Girl 🌊</h1>
-            <p>Berhasil menyelamatkan Cry Baby! Ini video spesial yang dibuat khusus dengan seluruh tenaga kerja duniaku untukmu:</p>
+            <p>Tau ga sih kenapa aku suka banget minta pap kamu? Selain karena aku bisa liat kamu kapanpun dan dimanapun, aku juga bisa nyimpen momen-momen kecil kayak gini… yang mungkin sederhana, tapi berarti banget buat aku hehe</p>
             <video id="mainVideo" controls playsinline>
                 <source src="video-editan.mp4" type="video/mp4">
             </video>
@@ -204,11 +228,12 @@
         </div>
     </div>
 
-    <!-- PAGE 4: PHOTO GALLERY I (4 Foto Solo Shot Elegan) -->
     <div class="page" id="page4">
         <div class="card">
             <h1>Memory Lane: Part I 📸</h1>
-            <p>Ketuk gambar mini di bawah ini untuk memunculkan dan memperbesar foto kenangan kita tanpa tertumpuk:</p>
+            <p>Coba ketuk gambar mini di bawah ini ya, biar fotonya muncul dan bisa kamu lihat lebih jelas. Ini beberapa foto kamu yang menurut aku paling cantik, maniesssh, elegan, dan dewasa.
+
+Sebenernya masih banyak sih… tapi ini TOP 4 versi aku hehe</p>
             <div class="grid-gallery">
                 <img src="foto-editan-4a.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4a.jpg')">
                 <img src="foto-editan-4b.jpg" class="thumb-img" onclick="previewImage('imgPreview1', 'foto-editan-4b.jpg')">
@@ -220,11 +245,10 @@
         </div>
     </div>
 
-    <!-- PAGE 5: PHOTO GALLERY II (4 Foto Solo Shot Santai / Hobi) -->
     <div class="page" id="page5">
         <div class="card">
             <h1>Memory Lane: Part II 🎞️</h1>
-            <p>Every small step with you matters. Silakan ketuk koleksi foto selanjutnya:</p>
+            <p>Kalau yang ini, beberapa foto kamu yang menurut aku paling ekspresif sih wkwk. Tadinya aku mau masukin yang agak “aib-aib” juga… tapi aku ga tegaaaa 😭:</p>
             <div class="grid-gallery">
                 <img src="foto-editan-5a.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5a.jpg')">
                 <img src="foto-editan-5b.jpg" class="thumb-img" onclick="previewImage('imgPreview2', 'foto-editan-5b.jpg')">
@@ -236,13 +260,14 @@
         </div>
     </div>
 
-    <!-- PAGE 6: BONUS GALLERY (3 Foto Berdua Paling Receh) -->
     <div class="page" id="page6">
         <div class="card">
             <h1>The Fun Snippets 元気 🧩</h1>
-            <p>Koleksi kompilasi foto-foto dengan komuk dan pose paling receh kesukaan kita:</p>
+            <p>Kita jarang banget ya punya foto bareng yang proper… jadi aku sempet bingung juga mau masukin yang mana wkwk.
+
+Next kita harus banyak foto berdua ya sayang, biar nanti ga kehabisan momen buat disimpen ❤️</p>
             <div class="grid-gallery">
-                <img src="foto-editan-6a.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpg')">
+                <img src="foto-editan-6a.jpeg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6a.jpeg')">
                 <img src="foto-editan-6b.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6b.jpg')">
                 <img src="foto-editan-6c.jpg" class="thumb-img" onclick="previewImage('imgPreview3', 'foto-editan-6c.jpg')">
             </div>
@@ -251,7 +276,6 @@
         </div>
     </div>
 
-    <!-- PAGE 7: LOVE LETTER (TYPEWRITER) -->
     <div class="page" id="page7">
         <div class="card" style="max-width: 480px;">
             <h1>To My Favorite Person 💌</h1>
@@ -288,7 +312,7 @@
             nextPage(2);
         }
 
-        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE ---
+        // --- 3. SYSTEM: AUDIO FADE IN/OUT ENGINE (PERALIHAN VOLUMENYA BIAR SMOOTH) ---
         function fadeAudio(targetVolume) {
             clearInterval(fadeTimer);
             const fadeInterval = 50;  
@@ -341,7 +365,7 @@
 
         function pauseVideoAndNext() {
             mainVideo.pause();
-            fadeAudio(0.85); 
+            fadeAudio(0.85); // Musik latar kembali naik perlahan ke 85% (Mulus!)
             nextPage(4);
         }
 
@@ -351,12 +375,11 @@
             document.getElementById('page' + targetPageId).classList.add('active');
             
             if (targetPageId === 3) {
-                fadeAudio(0.15); 
+                fadeAudio(0.15); // Musik latar meredup perlahan ke 15% demi Voice Over mas (Mulus!)
             }
         }
 
         // --- 7. GAMEPLAY: TYPEWRITER (PAGE 7) ---
-        // Teks menggunakan format array string paragraf murni agar eksekusi innerHTML aman dan tanda kutip batin rapi
         const longLetterParagraphs = [
             "\"Selamat ulang tahun sayangku cintaku duniaku. Kepala dua nih yeee sekarang, welcome to the jungle yaa lovee hehehe. ini jadi ulang tahun pertama kamu yang aku rayain yaa?? aku berharap banget, di ulang tahun kamu berikut-berikutnya nanti, aku masih jadi orang yang ada disamping kamu, yang selalu ngerayain kamu dengan penuh bahagia dan unpredictable maybe eheheh ❤️\"",
             "\"Semoga dengan bertambahnya umur kamu, makin bertambah juga hal baik yang datang dari diri kamu sendiri ataupun yang datang ke kamu. semoga kamu semakin dewasa, semakin banyak energinya dan kesabarannya untuk ngadepin aku plenger ini wkwkwk. tetep jadi Zaskia Nanda Ardita yang pertama kali aku deketin sejak 5 November 2025 itu yaa. sekali lagi Happy Birthday My Beautiful Girl. I LOVE U SO MUCH MORE ZASKIA NANDA ARDITA!!! ❤️ ❤️ ❤️.\"",
@@ -371,7 +394,6 @@
             let currentParagraphIndex = 0;
             let currentCharacterIndex = 0;
             
-            // Membuat elemen p pertama untuk wadah ngetik
             let activeParagraphElement = document.createElement('p');
             box.appendChild(activeParagraphElement);
 
@@ -382,16 +404,15 @@
                     if (currentCharacterIndex < currentText.length) {
                         activeParagraphElement.innerHTML += currentText.charAt(currentCharacterIndex);
                         currentCharacterIndex++;
-                        box.scrollTop = box.scrollHeight; // Auto scroll kebawah pas ngetik di HP
+                        box.scrollTop = box.scrollHeight; 
                         setTimeout(typeWriter, 45); 
                     } else {
-                        // Jika paragraf ini selesai, pindah ke paragraf berikutnya setelah jeda sedikit
                         currentParagraphIndex++;
                         currentCharacterIndex = 0;
                         if (currentParagraphIndex < longLetterParagraphs.length) {
                             activeParagraphElement = document.createElement('p');
                             box.appendChild(activeParagraphElement);
-                            setTimeout(typeWriter, 500); // Jeda sebelum paragraf baru dimulai
+                            setTimeout(typeWriter, 500); // Jeda antar-paragraf
                         }
                     }
                 }
